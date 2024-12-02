@@ -13,7 +13,10 @@ result l1 l2 = foldr (\(a, b) s -> distance a b + s) 0 $ zip (sort l1) (sort l2)
   where sort = qsort []
         distance x y = abs (x - y)
 
+result2 l1 l2 = foldr (\x s -> (x * length [ a | a <- l2, a == x]) + s) 0 l1
+
 main = do
   inp <- readFile "input"
   let (a,b) = getLists inp
   putStrLn $ show $ result a b
+  putStrLn $ show $ result2 a b
